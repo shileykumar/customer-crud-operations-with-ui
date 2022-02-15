@@ -5,7 +5,7 @@ logging:
     com.sunglowsys: DEBUG
 
 server:
-  port: 8080
+  port: 80
 
 spring:
   datasource:
