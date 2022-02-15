@@ -62,7 +62,10 @@ public class CustomerResource {
     @GetMapping("/_search/customers")
     public String searchCustomers(String searchText, Model model) {
         log.debug("REST request to search Customers : {}", searchText);
-        List<Customer> customer = customerService.search(searchText);
+        if (searchText != null) {
+            List<Customer> customer = customerService.search(searchText);
+            model.addAttribute("customer", customer);
+        }
         return "index";
     }
 
