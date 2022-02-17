@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -15,18 +16,19 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty
     private String firstName;
 
     private String lastName;
 
     @Email
+    @NotEmpty
     private String email;
 
-    @NotNull
+    @NotEmpty
     private String mobile;
 
-    @NotNull
+    @NotEmpty
     private String gender;
 
     public Customer() {

@@ -21,10 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" th:href="@{/api/}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link activ" th:href="@{/api/customers/create}">Add Customer</a>
+                        <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
                     </li>
                 </ul>
             </div>
@@ -33,9 +30,9 @@
 
 
     <div class="container p-5">
-        <h5>Order By</h5>
         <div class="row">
             <div class="p-2 col-sm-6">
+                <a class="btn btn-primary" th:href="@{/customers/create}">Add Customer</a>
                 <!--<table>
                     <tr>
                         <td><a th:href="@{/api/}" class="btn">Default</a></td>
@@ -45,10 +42,10 @@
                 </table>-->
             </div>
             <div class="col-sm-6">
-                <form th:action="@{/api/_search/customers}" method="get">
+                <form th:action="@{/_search/customers}" method="get">
                     <table>
                         <tr>
-                            <td><input type="text" name="searchText" th:value="${searchText}"  placeholder="search" class="form-control"></td>
+                            <td><input type="text" name="searchText" th:value="${searchText}"  placeholder="search" class="form-control" required></td>
                             <td>
                                 <button type="submit" class="btn btn-info" >Search</button>
                             </td>
@@ -78,8 +75,8 @@
                     <td th:text="${customer.getMobile}"></td>
                     <td th:text="${customer.getGender}"></td>
                     <td>
-                        <a th:href="@{/api/customers/update/{id}(id= ${customer.id})}" class="btn btn-success">Update</a>
-                        <a th:href="@{/api/customers/delete/{id}(id = ${customer.id})}" class="btn btn-danger">Delete</a>
+                        <a th:href="@{/customers/update/{id}(id= ${customer.id})}" class="btn btn-success">Update</a>
+                        <a th:href="@{/customers/delete/{id}(id = ${customer.id})}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             </tbody>
@@ -87,42 +84,16 @@
 
         <!--paging-->
 
-        <div th:if = "${totalPage > 1}">
-            <div class = "row col-sm-10">
-
-                <div class = "col-sm-2">
-                    Total Rows: [[${totalElement}]]
-                </div>
-
-                <div class = "col-sm-1">
-                    <span th:each= "i : ${#numbers.sequence(1, totalPage)}">
-                        <a th:if = "${pageNo != i}" th:href = "@{'/page/' + ${i}}">[[${i}]]</a>
-                        <span th:unless = "${pageNo != i }">[[${i}]]</span> &nbsp; &nbsp;
-                    </span>
-                </div>
-
-                <div class="col-sm-1">
-                    <a th:if="${pageNo < totalPage}" th:href="@{'page/' + ${pageNo + 1}}">Next</a>
-                    <span th:unless="${pageNo < totalPge}">Next</span>
-                </div>
-
-                <div class="col-sm-1">
-                    <a th:if="${pageNo < totalPage}" th:href="@{'page/' + ${totalPage}}">Last</a>
-                    <span th:unless="${pageNo < totalPge}">Last</span>
-                </div>
-            </div>
-        </div>
-
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
     </div>
 
-    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-
-    &lt;!&ndash; Option 2: Separate Popper and Bootstrap JS &ndash;&gt;
-    &lt;!&ndash;
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    &ndash;&gt;-->
 </body>
 </html>
